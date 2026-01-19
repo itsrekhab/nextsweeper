@@ -20,7 +20,7 @@ export function createMineFieldGenerator(
   gameParams: GameParams,
   seed: number,
 ): {
-  initialGenerate: () => MineField;
+  init: () => MineField;
   generate: (x: number, y: number) => MineField;
 } {
   const random = createRandomGenerator(seed);
@@ -28,7 +28,7 @@ export function createMineFieldGenerator(
   let gameField: MineField = [];
   let generated: boolean = false;
 
-  function initialGenerate(): MineField {
+  function init(): MineField {
     generated = false;
 
     const { width, height, mines } = gameParams;
@@ -93,7 +93,7 @@ export function createMineFieldGenerator(
   }
 
   return {
-    initialGenerate,
+    init,
     generate,
   };
 }

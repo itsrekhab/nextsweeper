@@ -37,9 +37,7 @@ export function useGame(
     () => createMineFieldGenerator(gameParams, pureSeed),
     [gameParams, pureSeed],
   );
-  const [gameField, setGameField] = useState(() =>
-    gameObject.initialGenerate(),
-  );
+  const [gameField, setGameField] = useState(() => gameObject.init());
 
   const revealedCells = useMemo(
     () =>
@@ -162,7 +160,7 @@ export function useGame(
 
   const resetGame = useCallback(() => {
     setIsFirstClick(true);
-    setGameField(() => gameObject.initialGenerate());
+    setGameField(() => gameObject.init());
     setGameState("not started");
     resetTimerFn();
   }, [gameObject, resetTimerFn]);
