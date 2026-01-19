@@ -1,0 +1,61 @@
+import type { Metadata } from "next";
+import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
+import "./globals.css";
+
+import { NextIntlClientProvider } from "next-intl";
+import Header from "./_components/Header";
+
+const plex = IBM_Plex_Sans({
+  subsets: ["latin", "cyrillic", "cyrillic-ext"],
+  variable: "--font-plex-sans",
+});
+const plex_mono = IBM_Plex_Mono({
+  weight: "400",
+  subsets: ["latin", "cyrillic", "cyrillic-ext"],
+  variable: "--font-plex-mono",
+});
+
+export const metadata: Metadata = {
+  title: "NextSweeper",
+  description: "A Minesweeper implementation in React and Next.js",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+                      try {
+                        let theme = localStorage.getItem('theme');
+                        let supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                        if (theme === 'dark' || (!theme && supportDarkMode)) {
+                          document.documentElement.dataset.theme = 'dark';
+                        } else {
+                          document.documentElement.dataset.theme = 'light';
+                        }
+                      } catch (e) {}
+                  `,
+          }}
+        />
+      </head>
+      <body
+        className={`${plex.variable} ${plex_mono.variable} mx-auto bg-background-accent text-foreground font-sans antialiased`}
+      >
+        <NextIntlClientProvider>
+          <Header />
+          {/*<ViewTransition>*/}
+          <div className="mx-auto mt-12 min-h-[calc(100vh-3rem)] bg-background xl:max-w-7xl">
+            {children}
+          </div>
+          {/*</ViewTransition>*/}
+        </NextIntlClientProvider>
+      </body>
+    </html>
+  );
+}

@@ -1,0 +1,53 @@
+{
+  "ThemeSelect": {
+    "dark": "Тёмная",
+    "light": "Светлая",
+    "system": "Системная"
+  },
+  "DifficultySelect": {
+    "beginner": "Новичок",
+    "expert": "Эксперт",
+    "intermediate": "Средний",
+    "message": "Выберите сложность:"
+  },
+  "Header": {
+    "Nav": {
+      "home": "Главная",
+      "play": "Играть",
+      "stats": "Статистика"
+    }
+  },
+  "Home": {
+    "hero_description": "Взрывная классика"
+  },
+  "Game": {
+    "head": {
+      "description": "Игра в классическую игру Сапёр",
+      "title": {
+        "default": "Игра",
+        "in progress": "Игра в процессе"
+      }
+    },
+    "mines": "Мины",
+    "time": "Время"
+  },
+  "Stats": {
+    "Dialog": {
+      "cancel": "Отмена",
+      "confirm": "Подтвердить",
+      "confirm_message": "Вы уверены, что хотите очистить все данные? Это действие необратимо."
+    },
+    "body_title": "Статистика",
+    "clear_data": "Очистить все данные",
+    "game_count": "Игр сыграно",
+    "head": {
+      "description": "Просмотр статистики игр",
+      "title": "Статистика"
+    },
+    "high_scores": "Рекорды",
+    "no_scores": "Нет рекордов",
+    "score": "Очки",
+    "timestamp": "Дата",
+    "win_count": "Игр выиграно"
+  }
+}

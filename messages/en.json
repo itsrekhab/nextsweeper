@@ -1,0 +1,53 @@
+{
+  "ThemeSelect": {
+    "dark": "Dark",
+    "light": "Light",
+    "system": "System"
+  },
+  "DifficultySelect": {
+    "beginner": "Beginner",
+    "expert": "Expert",
+    "intermediate": "Intermediate",
+    "message": "Select difficulty:"
+  },
+  "Header": {
+    "Nav": {
+      "home": "Home",
+      "play": "Play",
+      "stats": "Stats"
+    }
+  },
+  "Home": {
+    "hero_description": "The mine-blowing classic"
+  },
+  "Game": {
+    "head": {
+      "description": "Play the classic game of Minesweeper",
+      "title": {
+        "default": "Game",
+        "in progress": "Game in progress"
+      }
+    },
+    "mines": "Mines",
+    "time": "Time"
+  },
+  "Stats": {
+    "Dialog": {
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "confirm_message": "Are you sure you want to clear all data? This cannot be undone."
+    },
+    "body_title": "Stats",
+    "clear_data": "Clear all data",
+    "game_count": "Games played",
+    "head": {
+      "description": "View your game statistics",
+      "title": "Stats"
+    },
+    "high_scores": "High scores",
+    "no_scores": "No scores yet",
+    "score": "Score",
+    "timestamp": "Date played",
+    "win_count": "Games won"
+  }
+}

@@ -1,0 +1,41 @@
+@import "tailwindcss";
+@import "./animations.css";
+
+:root {
+  --header-height: calc(var(--spacing) * 12);
+  --footer-height: calc(var(--spacing) * 12);
+
+  --background: var(--color-white);
+  --foreground: var(--color-neutral-900);
+  --background-accent: var(--color-gray-200);
+
+  --header: var(--color-gray-100);
+  --footer: var(--header);
+
+  --interactive: var(--color-gray-300);
+  --interactive-hover: var(--color-gray-400);
+  --interactive-active: var(--color-gray-500);
+
+  &[data-theme="dark"] {
+    --background: var(--color-gray-900);
+    --foreground: var(--color-white);
+    --background-accent: var(--color-gray-800);
+    --interactive: var(--color-gray-700);
+    --interactive-hover: var(--color-gray-600);
+    --interactive-active: var(--color-gray-500);
+  }
+}
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-background-accent: var(--background-accent);
+  --color-interactive: var(--interactive);
+  --color-interactive-hover: var(--interactive-hover);
+  --color-interactive-active: var(--interactive-active);
+
+  --font-sans: var(--font-plex-sans);
+  --font-mono: var(--font-plex-mono);
+}
