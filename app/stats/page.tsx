@@ -42,7 +42,7 @@ export default function Stats() {
   const dialog = useRef<HTMLDialogElement>(null);
 
   return (
-    <main className="mx-auto flex flex-wrap justify-between gap-2 p-2 py-1 xl:w-3xl">
+    <main className="mx-auto flex flex-wrap justify-between gap-6 p-2 py-1 xl:w-3xl">
       <h1 className="w-fit text-3xl font-semibold">{t("Stats.body_title")}</h1>
       <Button
         onClick={() => {
@@ -72,7 +72,7 @@ export default function Stats() {
           </Button>
         </form>
       </dialog>
-      <section className="flex basis-full gap-4">
+      <section className="flex basis-full gap-4 -mt-2">
         <p className="flex flex-col gap-0.5">
           <span className="block font-semibold">{t("Stats.game_count")}</span>
           <span className="flex gap-1 font-light items-baseline *:leading-none">
@@ -90,7 +90,7 @@ export default function Stats() {
           </span>
         </p>
       </section>
-      <section className="contents">
+      <section className="flex flex-col basis-full gap-2">
         <h2 className="basis-full text-2xl font-semibold">
           {t("Stats.high_scores")}
         </h2>
