@@ -3,6 +3,7 @@ import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 
 import { NextIntlClientProvider } from "next-intl";
+import { getLocale } from "next-intl/server";
 import Header from "./_components/Header";
 
 const plex = IBM_Plex_Sans({
@@ -20,13 +21,15 @@ export const metadata: Metadata = {
   description: "A Minesweeper implementation in React and Next.js",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
