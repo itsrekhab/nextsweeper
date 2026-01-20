@@ -14,8 +14,9 @@ function NavLink({
   return (
     <Link
       className={cn([
-        "h-full flex items-center relative data-[active=true]:pointer-events-none data-[active=true]:font-semibold px-4 py-2 -mx overflow-hidden",
-        "before:transform-[translateY(-100%)] hover:before:transform-[translateY(0%)] hover:before:border-b-4 hover:before:border-blue-500 before:transition-[transform_0.1s_ease-in] hover:before:transition-[transform_0.15s_ease-in] before:absolute hover:before:bg-blue-500/25 before:size-full before:block before:inset-0 before:z-0",
+        "isolate h-full flex items-center relative data-[active=true]:pointer-events-none data-[active=true]:font-semibold px-4 py-2 -mx overflow-hidden",
+        "before:transform-[translateY(-100%)] before:transition-[transform_0.1s_ease-in] before:absolute before:size-full before:block before:inset-0 before:z-0",
+        "hover:before:transform-[translateY(0%)] hover:before:border-b-4 hover:before:border-blue-500 hover:before:transition-[transform_0.15s_ease-in] hover:before:bg-blue-500/25",
         className,
       ])}
       {...props}
