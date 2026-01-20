@@ -6,7 +6,7 @@ import RestartIcon from "@/public/restart.svg";
 import StepForwardIcon from "@/public/step-forward.svg";
 import { cn } from "@udecode/cn";
 import { useTranslations } from "next-intl";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useGame } from "../_hooks/useGame";
 import { useTimer } from "../_hooks/useTimer";
 import GameBoard from "./GameField";
@@ -43,6 +43,7 @@ export default function GameSection({
     ),
   );
   const t = useTranslations("Game");
+  const [isRestarting, setIsRestarting] = useState(false);
 
   useEffect(() => {
     if (gameState === "in progress")
@@ -60,8 +61,17 @@ export default function GameSection({
           </span>
         </div>
         <div className="flex items-center justify-center gap-2">
-          <Button className="rounded-sm p-2" onClick={resetGame}>
-            <RestartIcon className="h-6 w-6" />
+          <Button
+            className="rounded-sm p-2"
+            onClick={() => {
+              resetGame();
+              setIsRestarting(true);
+            }}
+          >
+            <RestartIcon
+              className={cn("h-6 w-6", isRestarting && "animate-spin-to-left")}
+              onAnimationEnd={() => setIsRestarting(false)}
+            />
           </Button>
           <Button className="rounded-sm p-2" onClick={onStartNewGame}>
             <StepForwardIcon className="h-6 w-6" />
