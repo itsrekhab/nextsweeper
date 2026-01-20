@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 
+import Footer from "@/_components/Footer";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale } from "next-intl/server";
 import Header from "./_components/Header";
@@ -48,14 +49,15 @@ export default async function RootLayout({
         />
       </head>
       <body
-        className={`${plex.variable} ${plex_mono.variable} mx-auto bg-background-accent text-foreground font-sans antialiased`}
+        className={`${plex.variable} ${plex_mono.variable} mx-auto flex flex-col items-center bg-background-accent min-h-screen text-foreground font-sans antialiased`}
       >
         <NextIntlClientProvider>
           <Header />
           {/*<ViewTransition>*/}
-          <div className="mx-auto mt-12 min-h-[calc(100vh-3rem)] bg-background xl:max-w-7xl">
+          <div className="mt-12 bg-background xl:w-full xl:grow xl:max-w-7xl">
             {children}
           </div>
+          <Footer />
           {/*</ViewTransition>*/}
         </NextIntlClientProvider>
       </body>
