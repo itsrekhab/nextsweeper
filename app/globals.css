@@ -20,6 +20,10 @@
     --background: var(--color-gray-900);
     --foreground: var(--color-white);
     --background-accent: var(--color-gray-800);
+
+    --header: var(--color-gray-950);
+    --footer: var(--color-gray-950);
+
     --interactive: var(--color-gray-700);
     --interactive-hover: var(--color-gray-600);
     --interactive-active: var(--color-gray-500);
@@ -32,6 +36,10 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-background-accent: var(--background-accent);
+
+  --color-header: var(--header);
+  --color-footer: var(--footer);
+
   --color-interactive: var(--interactive);
   --color-interactive-hover: var(--interactive-hover);
   --color-interactive-active: var(--interactive-active);
