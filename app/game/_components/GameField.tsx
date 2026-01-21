@@ -34,7 +34,7 @@ const GameBoard = memo(function GameBoard({
 
   return (
     <div
-      className={`grid ${gridTwStyles.height[height]} ${gridTwStyles.width[width]} size-fit border-2 bg-background select-none`}
+      className={`grid ${gridTwStyles.height[height]} ${gridTwStyles.width[width]} size-fit border-2 bg-background select-none mx-auto`}
       onContextMenu={(e) => {
         e.preventDefault();
       }}

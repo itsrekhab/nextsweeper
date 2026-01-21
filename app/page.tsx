@@ -27,15 +27,13 @@ export default function Home() {
   const t = useTranslations();
 
   return (
-    <main className="flex flex-col items-center text-center">
-      <h1 className="h-[50vh] align-middle text-3xl leading-[50vh] font-bold text-blue-700">
+    <>
+      <h1 className="h-[50vh] text-center text-3xl leading-[50vh] font-bold text-blue-700">
         NextSweeper
       </h1>
-      <div>
-        <p>{t("Home.hero_description")}</p>
-      </div>
-      <p>{t("DifficultySelect.message")}</p>
-      <ul className="overflow-hidden rounded-md bg-gray-200 dark:bg-gray-800">
+      <p className="text-center">{t("Home.hero_description")}</p>
+      <p className="text-center">{t("DifficultySelect.message")}</p>
+      <ul className="mx-auto overflow-hidden text-center w-fit rounded-md bg-gray-200 dark:bg-gray-800">
         {difficultyModes.map((mode) => (
           <li key={mode.id}>
             <DifficultyLink
@@ -54,6 +52,6 @@ export default function Home() {
           </li>
         ))}
       </ul>
-    </main>
+    </>
   );
 }

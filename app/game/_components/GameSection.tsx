@@ -104,7 +104,7 @@ export default function GameSection({
           </div>
         </div>
       </section>
-      <section className="mt-2">
+      <section className="mt-2 mx-auto">
         <GameBoard
           gameField={gameField}
           onRevealAction={revealCell}

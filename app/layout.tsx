@@ -3,6 +3,7 @@ import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 
 import Footer from "@/_components/Footer";
+import { cn } from "@udecode/cn";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale } from "next-intl/server";
 import Header from "./_components/Header";
@@ -30,7 +31,15 @@ export default async function RootLayout({
   const locale = await getLocale();
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html
+      lang={locale}
+      className={cn([
+        "bg-background-accent grid [--content-padding:calc((var(--container-7xl)-var(--container-3xl))/2)]",
+        "grid-cols-[1fr_[content-box-start]_minmax(0,var(--content-padding))_[content-start]_min(100%,var(--container-3xl))_[content-end]_minmax(0,var(--content-padding))_[content-box-end]_1fr]",
+        "grid-rows-[calc(var(--header-height))_minmax(calc(100dvh-var(--header-height)-var(--footer-height)),auto)_min-content]",
+      ])}
+      suppressHydrationWarning
+    >
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -49,14 +58,12 @@ export default async function RootLayout({
         />
       </head>
       <body
-        className={`${plex.variable} ${plex_mono.variable} mx-auto flex flex-col items-center bg-background-accent min-h-screen text-foreground font-sans antialiased`}
+        className={`${plex.variable} ${plex_mono.variable} col-[content-box] row-span-full grid grid-rows-subgrid grid-cols-subgrid min-h-screen bg-background text-foreground font-sans antialiased`}
       >
         <NextIntlClientProvider>
           <Header />
           {/*<ViewTransition>*/}
-          <div className="mt-12 bg-background xl:w-full xl:grow xl:max-w-7xl">
-            {children}
-          </div>
+          <main className="col-[content] row-2 pt-2 w-auto">{children}</main>
           <Footer />
           {/*</ViewTransition>*/}
         </NextIntlClientProvider>

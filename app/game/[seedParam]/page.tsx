@@ -14,14 +14,12 @@ export default function GamePage() {
 
   return (
     <>
-      <main className="mx-auto w-fit justify-center p-2">
-        <GameSection
-          seed={seed}
-          onStartNewGame={() =>
-            redirect(`/game/${difficultyCode + "" + Date.now()}`)
-          }
-        />
-      </main>
+      <GameSection
+        seed={seed}
+        onStartNewGame={() =>
+          redirect(`/game/${difficultyCode + "" + Date.now()}`)
+        }
+      />
     </>
   );
 }

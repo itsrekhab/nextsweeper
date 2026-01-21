@@ -42,7 +42,7 @@ export default function Stats() {
   const dialog = useRef<HTMLDialogElement>(null);
 
   return (
-    <main className="mx-auto flex flex-wrap justify-between gap-6 p-2 py-1 xl:w-3xl">
+    <div className="mx-auto flex flex-wrap justify-between gap-6 p-2 py-1">
       <h1 className="w-fit text-3xl font-semibold">{t("Stats.body_title")}</h1>
       <Button
         onClick={() => {
@@ -136,6 +136,6 @@ export default function Stats() {
           <div className="basis-full">{t("Stats.no_scores")}</div>
         )}
       </section>
-    </main>
+    </div>
   );
 }
