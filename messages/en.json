@@ -29,7 +29,8 @@
       }
     },
     "mines": "Mines",
-    "time": "Time"
+    "time": "Time",
+    "high_score": "New high score!"
   },
   "Stats": {
     "Dialog": {

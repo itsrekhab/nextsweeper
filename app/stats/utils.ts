@@ -22,6 +22,7 @@ export async function saveHighScore(score: Score, difficulty: DifficultyId) {
   highScores.sort((a, b) => a.score - b.score);
   highScores.splice(5);
   localStorage?.setItem(`highScores_${difficulty}`, JSON.stringify(highScores));
+  return highScores.indexOf(score) + 1;
 }
 
 export function clearAllData() {

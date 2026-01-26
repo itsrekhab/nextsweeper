@@ -4,6 +4,7 @@ import PauseIcon from "@/public/pause.svg";
 import PlayIcon from "@/public/play.svg";
 import RestartIcon from "@/public/restart.svg";
 import StepForwardIcon from "@/public/step-forward.svg";
+import TrophyIcon from "@/public/trophy.svg";
 import { cn } from "@udecode/cn";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
@@ -19,6 +20,8 @@ export default function GameSection({
   onStartNewGame: () => void;
 }) {
   const [winAnimation, setWinAnimation] = useState(false);
+  const [firstPlace, setFirstPlace] = useState(false);
+
   const {
     seconds,
     totalSeconds,
@@ -34,16 +37,23 @@ export default function GameSection({
     revealCell,
     flagCell,
     resetGame,
-  } = useGame(seed, startTimer, pauseTimer, resetTimer, (difficultyCode) => {
-    saveHighScore(
-      {
-        score: seconds,
-        timestamp: Date.now(),
-      },
-      difficultyCode,
-    );
-    setWinAnimation(true);
-  });
+  } = useGame(
+    seed,
+    startTimer,
+    pauseTimer,
+    resetTimer,
+    async (difficultyCode) => {
+      const place = await saveHighScore(
+        {
+          score: seconds,
+          timestamp: Date.now(),
+        },
+        difficultyCode,
+      );
+      if (place === 1) setFirstPlace(true);
+      setWinAnimation(true);
+    },
+  );
   const t = useTranslations("Game");
   const [isRestarting, setIsRestarting] = useState(false);
 
@@ -67,6 +77,7 @@ export default function GameSection({
             className="rounded-sm p-2"
             onClick={() => {
               resetGame();
+              setFirstPlace(false);
               setIsRestarting(true);
             }}
           >
@@ -77,7 +88,13 @@ export default function GameSection({
           </Button>
           <Button
             className="rounded-sm p-2 disabled:pointer-events-none disabled:opacity-50"
-            onClick={isActive ? pauseTimer : startTimer}
+            onClick={() => {
+              if (isActive) {
+                pauseTimer();
+              } else {
+                startTimer();
+              }
+            }}
             disabled={gameState !== "in progress"}
           >
             {isActive ? (
@@ -86,12 +103,29 @@ export default function GameSection({
               <PlayIcon className="h-6 w-6" />
             )}
           </Button>
-          <Button className="rounded-sm p-2" onClick={onStartNewGame}>
+          <Button
+            className="rounded-sm p-2"
+            onClick={() => {
+              setFirstPlace(false);
+              onStartNewGame();
+            }}
+          >
             <StepForwardIcon className="h-6 w-6" />
           </Button>
         </div>
         <div className="place-self-end flex flex-col items-center">
-          <span className="text-xl leading-none font-light">{t("time")}</span>
+          <span className="relative text-xl leading-none font-light">
+            {t("time")}
+            {firstPlace && (
+              <>
+                <span className="absolute block left-[calc(100%+0.25rem)] top-1/2 -translate-y-1/2 size-5 rounded-full bg-amber-300 animate-[1.5s_forwards_1_ping]" />
+                <TrophyIcon
+                  className="absolute left-[calc(100%+0.25rem)] top-1/2 -translate-y-1/2 size-5 fill-amber-300 text-amber-300 animate-fade-in"
+                  aria-label={t("high_score")}
+                />
+              </>
+            )}
+          </span>
           <span
             className={cn([
               "font-mono text-3xl leading-none",
