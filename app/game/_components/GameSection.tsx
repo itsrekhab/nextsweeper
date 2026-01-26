@@ -55,7 +55,7 @@ export default function GameSection({
 
   return (
     <>
-      <section className="grid w-full shrink-0 grid-cols-3 items-center xl:basis-2xl">
+      <section className="grid w-auto grid-cols-[minmax(6rem,1fr)_max-content_minmax(6rem,1fr)] items-center">
         <div className="flex w-fit flex-col items-center">
           <span className="text-xl leading-none font-light">{t("mines")}</span>
           <span className="font-mono text-3xl leading-none">
@@ -75,11 +75,6 @@ export default function GameSection({
               onAnimationEnd={() => setIsRestarting(false)}
             />
           </Button>
-          <Button className="rounded-sm p-2" onClick={onStartNewGame}>
-            <StepForwardIcon className="h-6 w-6" />
-          </Button>
-        </div>
-        <div className="flex items-center justify-between">
           <Button
             className="rounded-sm p-2 disabled:pointer-events-none disabled:opacity-50"
             onClick={isActive ? pauseTimer : startTimer}
@@ -91,19 +86,22 @@ export default function GameSection({
               <PlayIcon className="h-6 w-6" />
             )}
           </Button>
-          <div className="flex flex-col items-center">
-            <span className="text-xl leading-none font-light">{t("time")}</span>
-            <span
-              className={cn([
-                "font-mono text-3xl leading-none",
-                gameState === "not started" && "text-gray-500",
-                gameState === "game over" && "text-red-600 dark:text-red-500",
-                gameState === "win" && "text-blue-700 dark:text-blue-500",
-              ])}
-            >
-              {totalSeconds}
-            </span>
-          </div>
+          <Button className="rounded-sm p-2" onClick={onStartNewGame}>
+            <StepForwardIcon className="h-6 w-6" />
+          </Button>
+        </div>
+        <div className="place-self-end flex flex-col items-center">
+          <span className="text-xl leading-none font-light">{t("time")}</span>
+          <span
+            className={cn([
+              "font-mono text-3xl leading-none",
+              gameState === "not started" && "text-gray-500",
+              gameState === "game over" && "text-red-600 dark:text-red-500",
+              gameState === "win" && "text-blue-700 dark:text-blue-500",
+            ])}
+          >
+            {totalSeconds}
+          </span>
         </div>
       </section>
       <section className="mt-2 mx-auto">
