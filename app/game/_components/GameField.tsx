@@ -8,12 +8,16 @@ type GameBoardProps = {
   gameField: MineField;
   onRevealAction: (x: number, y: number) => void;
   onFlagAction: (x: number, y: number) => void;
+  animationState: boolean;
+  onAnimationEnd?: () => void;
 };
 
 const GameBoard = memo(function GameBoard({
   gameField,
   onRevealAction,
   onFlagAction,
+  animationState,
+  onAnimationEnd,
 }: GameBoardProps) {
   const gridTwStyles: Record<
     "width" | "height",
@@ -34,7 +38,8 @@ const GameBoard = memo(function GameBoard({
 
   return (
     <div
-      className={`grid ${gridTwStyles.height[height]} ${gridTwStyles.width[width]} size-fit border-2 bg-background select-none mx-auto`}
+      className={`grid ${gridTwStyles.height[height]} ${gridTwStyles.width[width]} ${animationState && "animate-win-pulse"} size-fit border-2 bg-background select-none mx-auto`}
+      onAnimationEnd={onAnimationEnd}
       onContextMenu={(e) => {
         e.preventDefault();
       }}

@@ -11,5 +11,16 @@
     }
   }
 
+  @keyframes win-pulse {
+    33% {
+      box-shadow: 0 0 32px var(--color-blue-500);
+    }
+
+    100% {
+      box-shadow: 0 0 32px transparent;
+    }
+  }
+
   --animate-spin-to-left: 0.4s ease-out spin-to-left;
+  --animate-win-pulse: 1.5s 0.1s win-pulse;
 }

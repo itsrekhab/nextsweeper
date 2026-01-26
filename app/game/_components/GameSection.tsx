@@ -18,6 +18,7 @@ export default function GameSection({
   seed: number;
   onStartNewGame: () => void;
 }) {
+  const [winAnimation, setWinAnimation] = useState(false);
   const {
     seconds,
     totalSeconds,
@@ -33,15 +34,16 @@ export default function GameSection({
     revealCell,
     flagCell,
     resetGame,
-  } = useGame(seed, startTimer, pauseTimer, resetTimer, (difficultyCode) =>
+  } = useGame(seed, startTimer, pauseTimer, resetTimer, (difficultyCode) => {
     saveHighScore(
       {
         score: seconds,
         timestamp: Date.now(),
       },
       difficultyCode,
-    ),
-  );
+    );
+    setWinAnimation(true);
+  });
   const t = useTranslations("Game");
   const [isRestarting, setIsRestarting] = useState(false);
 
@@ -109,6 +111,8 @@ export default function GameSection({
           gameField={gameField}
           onRevealAction={revealCell}
           onFlagAction={flagCell}
+          animationState={winAnimation}
+          onAnimationEnd={() => setWinAnimation(false)}
         />
       </section>
     </>

@@ -10,7 +10,7 @@ export function useGame(
   startTimerFn: () => void,
   pauseTimerFn: () => void,
   resetTimerFn: () => void,
-  saveHighScoreFn: (difficultyCode: DifficultyId) => void,
+  onWinFn: (difficultyCode: DifficultyId) => void,
 ) {
   const difficultyId = useMemo(() => Number(String(seed)[0]), [seed]);
   const difficultyCode = useMemo<DifficultyId>(
@@ -65,7 +65,7 @@ export function useGame(
   }
   if (gameState === "in progress" && revealedCells === width * height - mines) {
     pauseTimerFn();
-    saveHighScoreFn(difficultyCode);
+    onWinFn(difficultyCode);
     setGameState("win");
     incrementWinCount(difficultyCode);
   }
