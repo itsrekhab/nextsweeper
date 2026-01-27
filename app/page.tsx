@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@udecode/cn";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
@@ -8,6 +10,7 @@ function DifficultyLink({
   href,
   children,
   className,
+  onClick,
 }: ComponentProps<typeof Link>) {
   return (
     <Link
@@ -17,6 +20,7 @@ function DifficultyLink({
         "before:absolute before:block before:transition-transform before:origin-left before:transform-[scaleX(0)] hover:before:transform-[scaleX(1)] before:inset-0",
         className,
       ])}
+      onClick={onClick}
     >
       <span className="relative z-1">{children}</span>
     </Link>
@@ -44,6 +48,9 @@ export default function Home() {
                   "before:bg-[color-mix(in_oklch,var(--color-gray-500),var(--color-blue-500))]/50",
                 mode.locale_code === "expert" && "before:bg-blue-500/50",
               )}
+              onClick={() => {
+                localStorage.setItem("difficulty", mode.id + "");
+              }}
             >
               {t(
                 `DifficultySelect.${mode.locale_code as DifficultyLocaleCode}`,
