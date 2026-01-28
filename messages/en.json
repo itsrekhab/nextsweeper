@@ -8,7 +8,9 @@
     "beginner": "Beginner",
     "expert": "Expert",
     "intermediate": "Intermediate",
-    "message": "Select difficulty:"
+    "message": "Select your difficulty.",
+    "size": "Size",
+    "mines": "Mines"
   },
   "Header": {
     "Nav": {
@@ -18,7 +20,7 @@
     }
   },
   "Home": {
-    "hero_description": "The mine-blowing classic"
+    "hero_description": "The classic game, modernized"
   },
   "Game": {
     "head": {

@@ -8,7 +8,9 @@
     "beginner": "Новичок",
     "expert": "Эксперт",
     "intermediate": "Средний",
-    "message": "Выберите сложность:"
+    "message": "Выберите сложность.",
+    "size": "Размер",
+    "mines": "Мины"
   },
   "Header": {
     "Nav": {
@@ -18,7 +20,7 @@
     }
   },
   "Home": {
-    "hero_description": "Взрывная классика"
+    "hero_description": "Классика в современном исполнении"
   },
   "Game": {
     "head": {
