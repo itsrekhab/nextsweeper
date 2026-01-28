@@ -23,12 +23,12 @@ export function createMineFieldGenerator(
   init: () => MineField;
   generate: (x: number, y: number) => MineField;
 } {
-  const random = createRandomGenerator(seed);
   let cellIndices: number[] = [];
   let gameField: MineField = [];
   let generated: boolean = false;
 
   function init(): MineField {
+    const random = createRandomGenerator(seed);
     generated = false;
 
     const { width, height, mines } = gameParams;
