@@ -44,7 +44,11 @@ export function useGame(
       gameField.reduce(
         (cells, row) =>
           cells +
-          row.reduce((rowCells, cell) => rowCells + Number(cell.isRevealed), 0),
+          row.reduce(
+            (rowCells, cell) =>
+              rowCells + Number(cell.isRevealed && !cell.isMine),
+            0,
+          ),
         0,
       ),
     [gameField],
