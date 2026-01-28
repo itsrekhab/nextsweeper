@@ -54,7 +54,8 @@ export function useGame(
     const flagsCount =
       mines -
       gameField.reduce(
-        (acc, row) => acc + row.filter((cell) => cell.isFlagged).length,
+        (acc, row) =>
+          acc + row.filter((cell) => cell.markType === "flag").length,
         0,
       );
     return flagsCount > 0 ? flagsCount : 0;
@@ -80,12 +81,12 @@ export function useGame(
       }
       if (
         !isFirstClick &&
-        (gameState !== "in progress" || gameField[y][x].isFlagged)
+        (gameState !== "in progress" || gameField[y][x].markType === "flag")
       )
         return;
       let nearbyFlags = 0;
       traverseAdjacent(gameField, x, y, (aX, aY) => {
-        if (gameField[aY][aX].isFlagged) nearbyFlags++;
+        if (gameField[aY][aX].markType === "flag") nearbyFlags++;
       });
       const isChordable =
         nearbyFlags === gameField[y][x].nearbyMines &&
@@ -97,7 +98,10 @@ export function useGame(
         let isChord = isChordable;
 
         function revealHelper(x: number, y: number) {
-          if (gfCopy[y][x].isFlagged || (gfCopy[y][x].isRevealed && !isChord))
+          if (
+            gfCopy[y][x].markType === "flag" ||
+            (gfCopy[y][x].isRevealed && !isChord)
+          )
             return;
           if (gfCopy[y][x].isMine) {
             gfCopy[y][x] = { ...gfCopy[y][x], isRevealed: true };
@@ -105,7 +109,12 @@ export function useGame(
             setGameState("game over");
             return;
           }
-          if (!isChord) gfCopy[y][x] = { ...gfCopy[y][x], isRevealed: true };
+          if (!isChord)
+            gfCopy[y][x] = {
+              ...gfCopy[y][x],
+              isRevealed: true,
+              markType: null,
+            };
           if (gfCopy[y][x].nearbyMines === 0 || isChord) {
             isChord = false;
             traverseAdjacent(gfCopy, x, y, (aX, aY) => {
@@ -144,7 +153,10 @@ export function useGame(
         return;
       setGameField((gf) => {
         const gfCopy = gf.map((row) => row.map((cell) => cell));
-        gfCopy[y][x] = { ...gfCopy[y][x], isFlagged: !gfCopy[y][x].isFlagged };
+        gfCopy[y][x] = {
+          ...gfCopy[y][x],
+          markType: gfCopy[y][x].markType === "flag" ? null : "flag",
+        };
         return gfCopy;
       });
     },
@@ -156,6 +168,74 @@ export function useGame(
       difficultyCode,
       startTimerFn,
     ],
+  );
+
+  const markNearbyCells = useCallback(
+    (x: number, y: number) => {
+      if (
+        gameState !== "in progress" ||
+        isFirstClick ||
+        !gameField[y][x].isRevealed ||
+        gameField[y][x].nearbyMines === 0
+      )
+        return;
+      let nearbyUnrevealed = 0;
+      let nearbyFlagged = 0;
+      let nearbyMarked = 0;
+      let markMode: "flag" | "mark" | "remove" = "mark";
+      traverseAdjacent(gameField, x, y, (aX, aY) => {
+        if (!gameField[aY][aX].isRevealed) nearbyUnrevealed++;
+        if (gameField[aY][aX].markType === "flag") nearbyFlagged++;
+        if (gameField[aY][aX].markType === "zone") nearbyMarked++;
+      });
+      if (nearbyMarked > 0) markMode = "remove";
+      if (nearbyUnrevealed === gameField[y][x].nearbyMines) markMode = "flag";
+      console.log(nearbyUnrevealed, nearbyFlagged, nearbyMarked);
+      if (nearbyUnrevealed === nearbyFlagged) markMode = "remove";
+      setGameField((gf) => {
+        const gfCopy = gf.map((row) => row.map((cell) => cell));
+        traverseAdjacent(gameField, x, y, (aX, aY) => {
+          const cell = gfCopy[aY][aX];
+          if (cell.isRevealed) return;
+          switch (markMode) {
+            case "flag":
+              gfCopy[aY][aX] = {
+                ...cell,
+                markType: "flag",
+              };
+              break;
+            case "mark":
+              gfCopy[aY][aX] = {
+                ...cell,
+                markType: cell.markType !== "flag" ? "zone" : cell.markType,
+              };
+              break;
+            case "remove":
+              gfCopy[aY][aX] = {
+                ...gfCopy[aY][aX],
+                markType:
+                  nearbyUnrevealed === nearbyFlagged || cell.markType !== "flag"
+                    ? null
+                    : cell.markType,
+              };
+              break;
+          }
+        });
+        return gfCopy;
+      });
+    },
+    [gameField, gameState, isFirstClick],
+  );
+
+  const handleMark = useCallback(
+    (x: number, y: number) => {
+      if (gameField[y][x].isRevealed) {
+        markNearbyCells(x, y);
+      } else {
+        flagCell(x, y);
+      }
+    },
+    [gameField, flagCell, markNearbyCells],
   );
 
   const resetGame = useCallback(() => {
@@ -171,7 +251,7 @@ export function useGame(
     revealedCells,
     minesRemaining,
     revealCell,
-    flagCell,
+    handleMark,
     resetGame,
   };
 }

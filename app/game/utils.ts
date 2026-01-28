@@ -35,7 +35,7 @@ export function createMineFieldGenerator(
     const totalCells = width * height;
 
     gameField = Array.from({ length: height }, () =>
-      Array.from({ length: width }, () => new Cell(false, false, false, 0)),
+      Array.from({ length: width }, () => new Cell(false, false, null, 0)),
     );
 
     cellIndices = Array.from({ length: totalCells }, (_, i) => i);

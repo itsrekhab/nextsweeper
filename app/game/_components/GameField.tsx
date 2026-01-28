@@ -7,7 +7,7 @@ import FieldCell from "./FieldCell";
 type GameBoardProps = {
   gameField: MineField;
   onRevealAction: (x: number, y: number) => void;
-  onFlagAction: (x: number, y: number) => void;
+  onMarkAction: (x: number, y: number) => void;
   animationState: boolean;
   onAnimationEnd?: () => void;
 };
@@ -15,7 +15,7 @@ type GameBoardProps = {
 const GameBoard = memo(function GameBoard({
   gameField,
   onRevealAction,
-  onFlagAction,
+  onMarkAction,
   animationState,
   onAnimationEnd,
 }: GameBoardProps) {
@@ -63,7 +63,7 @@ const GameBoard = memo(function GameBoard({
           return;
         const x = parseInt(e.target.dataset.x);
         const y = parseInt(e.target.dataset.y);
-        if (e.button === 2) onFlagAction(x, y);
+        if (e.button === 2) onMarkAction(x, y);
       }}
     >
       {gameField.map((row, y) => (

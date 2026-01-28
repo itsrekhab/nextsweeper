@@ -3,18 +3,18 @@ import * as v from "valibot";
 export class Cell {
   isMine: boolean = false;
   isRevealed: boolean = false;
-  isFlagged: boolean = false;
+  markType: null | "flag" | "zone" = null;
   nearbyMines: number = 0;
 
   constructor(
     isMine = false,
     isRevealed = false,
-    isFlagged = false,
+    markType = null,
     nearbyMines = 0,
   ) {
     this.isMine = isMine;
     this.isRevealed = isRevealed;
-    this.isFlagged = isFlagged;
+    this.markType = markType;
     this.nearbyMines = nearbyMines;
   }
 }

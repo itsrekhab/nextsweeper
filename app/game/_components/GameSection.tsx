@@ -35,7 +35,7 @@ export default function GameSection({
     gameState,
     minesRemaining,
     revealCell,
-    flagCell,
+    handleMark,
     resetGame,
   } = useGame(
     seed,
@@ -142,7 +142,7 @@ export default function GameSection({
         <GameBoard
           gameField={gameField}
           onRevealAction={revealCell}
-          onFlagAction={flagCell}
+          onMarkAction={handleMark}
           animationState={winAnimation}
           onAnimationEnd={() => setWinAnimation(false)}
         />
