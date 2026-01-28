@@ -1,9 +1,12 @@
-A Minesweeper implementation using React and Next.js. 
+# NextSweeper
+
+A modern reimplementation of Minesweeper with a few extras.
 
 ## Features
 
 - The classic game in its full glory
-- 3 difficulty levels
+- Mark multiple cells at once: as flags or as zones
+- Seeded field generation - share the boards you played with others!
 - Local playtime stats and high scores
 - Dark mode
 - More coming soon!
