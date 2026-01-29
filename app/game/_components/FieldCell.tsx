@@ -27,7 +27,7 @@ export default function FieldCell({ x, y, cell }: CellProps) {
     if (markType === "flag")
       return <FlagIcon className="w-4 h-4 pointer-events-none" />;
     if (!isRevealed) return "";
-    if (isMine) return <MineIcon className="w-4 h-4" />;
+    if (isMine) return <MineIcon className="size-4 text-black" />;
     return nearbyMines > 0 ? nearbyMines : "";
   };
 
