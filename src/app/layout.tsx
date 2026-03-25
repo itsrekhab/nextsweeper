@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 
-import Footer from "@/_components/Footer";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import { cn } from "@udecode/cn";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale } from "next-intl/server";
-import Header from "./_components/Header";
 
 const plex = IBM_Plex_Sans({
   subsets: ["latin", "cyrillic", "cyrillic-ext"],

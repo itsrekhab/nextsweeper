@@ -1,7 +1,7 @@
 "use client";
 import "client-only";
 
-import { isDifficultyMode } from "@/app/helpers";
+import { isDifficultyMode } from "@/utils";
 import { redirect, useParams } from "next/navigation";
 import { useState } from "react";
 import GameSection from "../_components/GameSection";

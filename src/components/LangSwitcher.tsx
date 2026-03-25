@@ -1,8 +1,8 @@
 "use client";
 
+import { locales } from "@/constants";
+import { setLocale } from "@/i18n/set-locale";
 import { useLocale } from "next-intl";
-import { locales } from "../_constants/constants";
-import { setLocale } from "./actions/actions";
 
 export default function LangSwitcher() {
   const locale = useLocale();

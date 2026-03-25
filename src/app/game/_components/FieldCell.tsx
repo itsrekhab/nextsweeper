@@ -1,5 +1,5 @@
-import FlagIcon from "@/public/flag.svg";
-import MineIcon from "@/public/mine.svg";
+import FlagIcon from "@public/flag.svg";
+import MineIcon from "@public/mine.svg";
 import { cn } from "@udecode/cn";
 import { Cell } from "../types";
 

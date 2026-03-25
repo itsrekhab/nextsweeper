@@ -1,12 +1,12 @@
 "use client";
 import "client-only";
 
+import { Score } from "@/app/game/types";
+import { Button } from "@/components/Button";
+import { DifficultyId, difficultyModes } from "@/constants";
+import { isDifficultyMode } from "@/utils";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
-import { Button } from "../_components/Button";
-import { DifficultyId, difficultyModes } from "../_constants/constants";
-import { Score } from "../game/types";
-import { isDifficultyMode } from "../helpers";
 import {
   clearAllData,
   getGameCount,

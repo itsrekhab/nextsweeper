@@ -1,6 +1,6 @@
+import { HighScoresSchema, Score } from "@/app/game/types";
+import { DifficultyId, difficultyModes } from "@/constants";
 import * as v from "valibot";
-import { DifficultyId, difficultyModes } from "../_constants/constants";
-import { HighScoresSchema, Score } from "../game/types";
 
 export function getHighScores(difficulty: DifficultyId): Score[] {
   const result = v.safeParse(

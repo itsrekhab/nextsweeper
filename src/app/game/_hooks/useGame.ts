@@ -1,8 +1,8 @@
 import { useCallback, useMemo, useState } from "react";
 
-import { DifficultyId, difficultyModes } from "@/app/_constants/constants";
-import { isDifficultyMode } from "@/app/helpers";
 import { incrementGameCount, incrementWinCount } from "@/app/stats/utils";
+import { DifficultyId, difficultyModes } from "@/constants";
+import { isDifficultyMode } from "@/utils";
 import { createMineFieldGenerator, traverseAdjacent } from "../utils";
 
 export function useGame(

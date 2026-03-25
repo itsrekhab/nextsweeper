@@ -1,4 +1,4 @@
-import { Locale } from "@/app/_constants/constants";
+import { Locale } from "@/constants";
 import messages from "@/messages/en.json";
 import { getRequestConfig } from "next-intl/server";
 import { cookies } from "next/headers";
@@ -17,6 +17,6 @@ export default getRequestConfig(async () => {
 
   return {
     locale,
-    messages: (await import(`../messages/${locale}.json`)).default,
+    messages: (await import(`@/messages/${locale}.json`)).default,
   };
 });

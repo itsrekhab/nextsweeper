@@ -1,12 +1,12 @@
 "use client";
 
-import MineIcon from "@/public/mine.svg";
-import SizeIcon from "@/public/size.svg";
+import { DifficultyLocaleCode, difficultyModes } from "@/constants";
+import MineIcon from "@public/mine.svg";
+import SizeIcon from "@public/size.svg";
 import { cn } from "@udecode/cn";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { ComponentProps, useState } from "react";
-import { DifficultyLocaleCode, difficultyModes } from "./_constants/constants";
 
 function DifficultyLink({
   href,

@@ -1,10 +1,10 @@
-import { Button } from "@/app/_components/Button";
 import { saveHighScore } from "@/app/stats/utils";
-import PauseIcon from "@/public/pause.svg";
-import PlayIcon from "@/public/play.svg";
-import RestartIcon from "@/public/restart.svg";
-import StepForwardIcon from "@/public/step-forward.svg";
-import TrophyIcon from "@/public/trophy.svg";
+import { Button } from "@/components/Button";
+import PauseIcon from "@public/pause.svg";
+import PlayIcon from "@public/play.svg";
+import RestartIcon from "@public/restart.svg";
+import StepForwardIcon from "@public/step-forward.svg";
+import TrophyIcon from "@public/trophy.svg";
 import { cn } from "@udecode/cn";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
