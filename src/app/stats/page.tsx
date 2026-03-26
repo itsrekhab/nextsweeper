@@ -5,8 +5,11 @@ import { Score } from "@/app/game/types";
 import { Button } from "@/components/Button";
 import { DifficultyId, difficultyModes } from "@/constants";
 import { isDifficultyMode } from "@/utils";
-import { useLocale, useTranslations } from "next-intl";
+import { cn } from "@udecode/cn";
+import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
+import StatCard from "./_components/StatCard";
+import styles from "./page.module.css";
 import {
   clearAllData,
   getGameCount,
@@ -17,7 +20,6 @@ import {
 } from "./utils";
 
 export default function Stats() {
-  const locale = useLocale();
   const t = useTranslations();
   const [gameCount, setGameCount] = useState(0);
   const [totalGameCount, setTotalGameCount] = useState(0);
@@ -72,30 +74,30 @@ export default function Stats() {
           </Button>
         </form>
       </dialog>
-      <section className="flex basis-full gap-4 -mt-2">
-        <p className="flex flex-col gap-0.5">
-          <span className="block font-semibold">{t("Stats.game_count")}</span>
-          <span className="flex gap-1 font-light items-baseline *:leading-none">
+      <section className="flex basis-full gap-8 -mt-2">
+        <StatCard>
+          <StatCard.Title>{t("Stats.game_count")}</StatCard.Title>
+          <StatCard.Value>
             <span className="text-xl">{gameCount}</span>
             <span>/</span>
             <span className="text-lg">{totalGameCount}</span>
-          </span>
-        </p>
-        <p className="flex flex-col gap-0.5">
-          <span className="block font-semibold">{t("Stats.win_count")}</span>
-          <span className="flex gap-1 font-light items-baseline *:leading-none">
+          </StatCard.Value>
+        </StatCard>
+        <StatCard>
+          <StatCard.Title>{t("Stats.win_count")}</StatCard.Title>
+          <StatCard.Value>
             <span className="text-xl">{winCount}</span>
             <span>/</span>
             <span className="text-lg">{totalWinCount}</span>
-          </span>
-        </p>
+          </StatCard.Value>
+        </StatCard>
       </section>
       <section className="flex flex-col basis-full gap-2">
         <h2 className="basis-full text-2xl font-semibold">
           {t("Stats.high_scores")}
         </h2>
-        <p className="flex items-center gap-1 basis-full">
-          <span>{t("DifficultySelect.message")}</span>
+        <p className="flex items-center gap-2 basis-full">
+          <span>{`${t("Stats.difficulty")}:`}</span>
           <select
             className="rounded-sm bg-interactive hover:bg-interactive-hover px-2 py-1"
             value={difficulty}
@@ -112,21 +114,25 @@ export default function Stats() {
           </select>
         </p>
         {highScores.length > 0 ? (
-          <table className="**:text-start">
+          <table className={cn(styles.table, "**:text-start")}>
             <thead>
-              <tr className="**:font-semibold">
-                <th className="py-1 ps-0 pe-4 w-fit">{t("Stats.score")}</th>
-                <th className="py-1 ps-0 pe-4">{t("Stats.timestamp")}</th>
+              <tr className="*:font-semibold *:bg-gray-200 dark:*:bg-gray-700">
+                <th className="w-fit">{t("Stats.time")}</th>
+                <th>{t("Stats.timestamp")}</th>
               </tr>
             </thead>
             <tbody>
               {highScores.map((score, index) => (
-                <tr key={index}>
-                  <td className="py-1 ps-0 pe-4 w-fit">
-                    {score.score.toFixed(3)}
-                  </td>
-                  <td className="py-1 ps-0 pe-4">
-                    {new Date(score.timestamp).toLocaleString(locale)}
+                <tr
+                  key={index}
+                  className="hover:bg-blue-50 dark:hover:bg-blue-950"
+                >
+                  <td className="w-fit">{score.score.toFixed(3)}</td>
+                  {/*<td>{new Date(score.timestamp).toLocaleString(locale)}</td>*/}
+                  <td>
+                    {t("Stats.time_format", {
+                      time: new Date(score.timestamp),
+                    })}
                   </td>
                 </tr>
               ))}

@@ -47,9 +47,11 @@
       "description": "Просмотр статистики игр",
       "title": "Статистика"
     },
+    "difficulty": "Сложность",
     "high_scores": "Рекорды",
     "no_scores": "Нет рекордов",
-    "score": "Очки",
+    "time": "Время",
+    "time_format": "{time,date,long}, {time,time,short}",
     "timestamp": "Дата",
     "win_count": "Игр выиграно"
   }

@@ -1,0 +1,26 @@
+.table {
+    --table-border-color: var(--color-gray-200);
+    border: 2px solid var(--table-border-color);
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+
+    & th, td {
+        padding: 0.5rem 1rem;
+        border-right: 2px solid var(--table-border-color);
+        border-bottom: 2px solid var(--table-border-color);
+
+        &:last-child {
+            border-right: none;
+        }
+    }
+
+    & tr:last-child td {
+        border-bottom: none;
+    }
+
+    *[data-theme="dark"] & {
+        --table-border-color: var(--color-gray-700);
+    }
+}

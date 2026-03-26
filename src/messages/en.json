@@ -47,9 +47,11 @@
       "description": "View your game statistics",
       "title": "Stats"
     },
+    "difficulty": "Difficulty",
     "high_scores": "High scores",
     "no_scores": "No scores yet",
-    "score": "Score",
+    "time": "Time",
+    "time_format": "{time,date,long}, {time,time,short}",
     "timestamp": "Date played",
     "win_count": "Games won"
   }
