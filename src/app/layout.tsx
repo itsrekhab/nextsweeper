@@ -34,8 +34,8 @@ export default async function RootLayout({
     <html
       lang={locale}
       className={cn([
-        "bg-background-accent grid [--content-padding:calc((var(--container-7xl)-var(--container-3xl))/2)]",
-        "grid-cols-[1fr_[content-box-start]_minmax(0,var(--content-padding))_[content-start]_min(100%,var(--container-3xl))_[content-end]_minmax(0,var(--content-padding))_[content-box-end]_1fr]",
+        "bg-background-accent grid [--content-padding:calc((var(--container-7xl)-var(--container-4xl))/2)]",
+        "grid-cols-[1fr_[content-box-start]_minmax(0,var(--content-padding))_[content-start]_min(100%,var(--container-4xl))_[content-end]_minmax(0,var(--content-padding))_[content-box-end]_1fr]",
         "grid-rows-[calc(var(--header-height))_minmax(calc(100dvh-var(--header-height)-var(--footer-height)),auto)_min-content]",
       ])}
       suppressHydrationWarning

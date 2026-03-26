@@ -34,7 +34,7 @@ export default function FieldCell({ x, y, cell }: CellProps) {
   return (
     <div
       className={cn([
-        "flex size-6 cursor-pointer content-center justify-center items-center overflow-hidden border border-transparent font-black inset-shadow-[1px_1px_0_0_rgba(0,0,0,0.5)]",
+        "flex size-7 cursor-pointer content-center justify-center items-center overflow-hidden border border-transparent font-black inset-shadow-[1px_1px_0_0_rgba(0,0,0,0.5)]",
         !isRevealed && "shadow-[2px_2px_0_0_rgba(0,0,0,0.125)] z-1",
         !isRevealed &&
           (markType === "zone"
