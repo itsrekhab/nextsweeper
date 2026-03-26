@@ -13,7 +13,7 @@ export default function GamePage() {
   const [seed] = useState(() => (seedParam ? Number(seedParam) : Date.now()));
 
   return (
-    <div className="w-fit mx-auto min-w-36">
+    <div className="w-fit mx-auto min-w-36 mt-8">
       <GameSection
         seed={seed}
         onStartNewGame={() =>
